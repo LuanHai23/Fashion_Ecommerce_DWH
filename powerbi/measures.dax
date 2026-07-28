@@ -1,0 +1,188 @@
+// Create these with Modeling > New measure.
+// Do not create them with New column.
+
+// ---------------------------------------------------------------------------
+// Executive sales metrics
+// ---------------------------------------------------------------------------
+
+Total Orders =
+SUM ( 'mart vw_sales_overview_daily'[total_orders] )
+
+Total Customers =
+SUM ( 'mart vw_customer_geography'[total_customers] )
+
+Total Quantity =
+SUM ( 'mart vw_sales_overview_daily'[total_quantity] )
+
+Net Revenue =
+SUM ( 'mart vw_sales_overview_daily'[net_revenue] )
+
+Gross Profit =
+SUM ( 'mart vw_sales_overview_daily'[gross_profit] )
+
+Profit Margin =
+DIVIDE ( [Gross Profit], [Net Revenue] )
+
+Average Order Value =
+DIVIDE ( [Net Revenue], [Total Orders] )
+
+Delivered Orders =
+SUM ( 'mart vw_sales_overview_daily'[delivered_orders] )
+
+Cancelled Orders =
+SUM ( 'mart vw_sales_overview_daily'[cancelled_orders] )
+
+Returned Status Orders =
+SUM ( 'mart vw_sales_overview_daily'[returned_orders] )
+
+// ---------------------------------------------------------------------------
+// Product metrics
+// ---------------------------------------------------------------------------
+
+Total Products =
+DISTINCTCOUNT ( 'mart vw_product_performance'[product_id] )
+
+Total Quantity Sold =
+SUM ( 'mart vw_product_performance'[total_quantity_sold] )
+
+Product Net Revenue =
+SUM ( 'mart vw_product_performance'[net_revenue] )
+
+Product Gross Profit =
+SUM ( 'mart vw_product_performance'[gross_profit] )
+
+Product Profit Margin =
+DIVIDE ( [Product Gross Profit], [Product Net Revenue] )
+
+Weighted Average Rating =
+DIVIDE (
+    SUMX (
+        'mart vw_product_performance',
+        'mart vw_product_performance'[avg_rating]
+            * 'mart vw_product_performance'[total_reviews]
+    ),
+    SUM ( 'mart vw_product_performance'[total_reviews] )
+)
+
+Return Quantity Rate =
+DIVIDE (
+    SUM ( 'mart vw_product_performance'[total_return_quantity] ),
+    SUM ( 'mart vw_product_performance'[total_quantity_sold] )
+)
+
+// ---------------------------------------------------------------------------
+// Return metrics
+// ---------------------------------------------------------------------------
+
+Return Rows =
+SUM ( 'mart vw_return_analysis'[return_rows] )
+
+Returned Orders =
+SUM ( 'mart vw_return_analysis'[returned_orders] )
+
+Return Quantity =
+SUM ( 'mart vw_return_analysis'[total_return_quantity] )
+
+Refund Amount =
+SUM ( 'mart vw_return_analysis'[total_refund_amount] )
+
+Weighted Average Days to Return =
+DIVIDE (
+    SUMX (
+        'mart vw_return_analysis',
+        'mart vw_return_analysis'[avg_days_to_return]
+            * 'mart vw_return_analysis'[return_rows]
+    ),
+    [Return Rows]
+)
+
+// ---------------------------------------------------------------------------
+// Inventory and web-traffic metrics
+// ---------------------------------------------------------------------------
+
+Latest Snapshot Date =
+MAX ( 'mart vw_inventory_health'[snapshot_date] )
+
+Stock on Hand - Latest Snapshot =
+VAR LatestSnapshot = [Latest Snapshot Date]
+RETURN
+    CALCULATE (
+        SUM ( 'mart vw_inventory_health'[stock_on_hand] ),
+        KEEPFILTERS (
+            'mart vw_inventory_health'[snapshot_date] = LatestSnapshot
+        )
+    )
+
+Inventory Units Sold =
+SUM ( 'mart vw_inventory_health'[units_sold] )
+
+Average Sell-through Rate =
+AVERAGE ( 'mart vw_inventory_health'[avg_sell_through_rate] )
+
+Traffic Sessions =
+SUM ( 'mart vw_traffic_sales_daily'[sessions] )
+
+Traffic Page Views =
+SUM ( 'mart vw_traffic_sales_daily'[page_views] )
+
+Traffic Revenue =
+SUM ( 'mart vw_traffic_sales_daily'[revenue] )
+
+Weighted Bounce Rate =
+DIVIDE (
+    SUMX (
+        'mart vw_web_traffic_by_source',
+        'mart vw_web_traffic_by_source'[sessions]
+            * 'mart vw_web_traffic_by_source'[avg_bounce_rate]
+    ),
+    SUM ( 'mart vw_web_traffic_by_source'[sessions] )
+)
+
+Traffic Revenue per Session =
+DIVIDE ( [Traffic Revenue], [Traffic Sessions] )
+
+// ---------------------------------------------------------------------------
+// Return-risk baseline metrics
+// ---------------------------------------------------------------------------
+
+AI Total Rows =
+COUNTROWS ( 'mart vw_ai_return_risk_prediction' )
+
+AI Predicted Return Rows =
+CALCULATE (
+    [AI Total Rows],
+    'mart vw_ai_return_risk_prediction'[predicted_return_flag] = TRUE ()
+)
+
+AI High Risk Rows =
+CALCULATE (
+    [AI Total Rows],
+    'mart vw_ai_return_risk_prediction'[risk_level] = "high"
+)
+
+AI Medium Risk Rows =
+CALCULATE (
+    [AI Total Rows],
+    'mart vw_ai_return_risk_prediction'[risk_level] = "medium"
+)
+
+AI Low Risk Rows =
+CALCULATE (
+    [AI Total Rows],
+    'mart vw_ai_return_risk_prediction'[risk_level] = "low"
+)
+
+AI Average Return Probability =
+AVERAGE ( 'mart vw_ai_return_risk_prediction'[return_probability] )
+
+AI Actual Returned Rows =
+CALCULATE (
+    [AI Total Rows],
+    'mart vw_ai_return_risk_prediction'[is_returned] = TRUE ()
+)
+
+AI Actual Return Rate =
+DIVIDE ( [AI Actual Returned Rows], [AI Total Rows] )
+
+AI Predicted Return Rate =
+DIVIDE ( [AI Predicted Return Rows], [AI Total Rows] )

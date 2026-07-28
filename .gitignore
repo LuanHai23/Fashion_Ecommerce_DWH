@@ -1,0 +1,9 @@
+data/raw/
+*.bak
+*.xlsx
+*.pbix
+*.dtsx.user
+*.dtproj.user
+__pycache__/
+.env
+ml/models/
