@@ -19,28 +19,28 @@ PIPELINE_NAME = "fashion_ecommerce_dwh_refresh"
 
 SQL_FILES = [
     # Staging refresh
-    "sql/02_staging/load_staging_tables.sql",
+    "sql/staging/load_staging_tables.sql",
 
     # Data quality
-    "sql/07_dq/run_dq_checks.sql",
+    "sql/dq/run_dq_checks.sql",
 
     # Dimension refresh
-    "sql/03_dimensions/load_dimension_tables.sql",
+    "sql/dimensions/load/load_dimension_tables.sql",
 
     # Core facts
-    "sql/04_facts/load_core_fact_tables.sql",
+    "sql/facts/load/load_core_fact_tables.sql",
 
     # Advanced facts
-    "sql/04_facts/load_advanced_fact_tables.sql",
+    "sql/facts/load/load_advanced_fact_tables.sql",
 
     # Power BI marts
-    "sql/05_marts/create_powerbi_marts.sql",
+    "sql/marts/create_powerbi_marts.sql",
 
     # ML features
-    "sql/06_ml/load_return_prediction_features.sql",
+    "sql/ml/load/load_return_prediction_features.sql",
 
     # AI prediction mart view
-    "sql/06_ml/create_prediction_mart.sql",
+    "sql/ml/create/create_prediction_mart.sql",
 ]
 
 
