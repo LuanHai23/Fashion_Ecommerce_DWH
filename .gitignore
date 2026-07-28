@@ -32,3 +32,4 @@ ml/models/*.pkl
 *.log
 .DS_Store
 Thumbs.db
+powerbi/*.pbix

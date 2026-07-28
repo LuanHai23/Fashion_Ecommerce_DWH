@@ -25,7 +25,7 @@ SQL_FILES = [
     "sql/dq/run_dq_checks.sql",
 
     # Dimension refresh
-    "sql/dimensions/load/load_dimension_tables.sql",
+    "sql/dimensions/load_dimension_tables.sql",
 
     # Core facts
     "sql/facts/load/load_core_fact_tables.sql",
