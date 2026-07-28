@@ -1,6 +1,6 @@
 # Architecture and Data Flow
 
-![Fashion E-Commerce Analytics Warehouse architecture](architecture.svg)
+![Fashion E-Commerce Analytics Warehouse architecture](images/Architecture_Warehouse.png)
 
 ## Where the data comes from
 
