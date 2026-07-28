@@ -1,9 +1,34 @@
-data/raw/
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Local data and database artifacts
+data/raw/*
+!data/raw/README.md
 *.bak
 *.xlsx
-*.pbix
+*.csv
+
+# SQL Server / Visual Studio user files
 *.dtsx.user
 *.dtproj.user
-__pycache__/
-.env
-ml/models/
+*.suo
+.vs/
+
+# Generated model artifacts
+ml/models/*.pkl
+!ml/models/.gitkeep
+
+# Logs and operating-system files
+*.log
+.DS_Store
+Thumbs.db
