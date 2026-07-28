@@ -51,7 +51,7 @@ formulas and full-precision results, and see the
 
 ## Architecture
 
-![Fashion E-Commerce Analytics Warehouse architecture](docs/architecture.svg)
+![Fashion E-Commerce Analytics Warehouse architecture](images/Architecture_Warehouse.png)
 
 [Open the high-resolution PNG](docs/architecture.png)
 
