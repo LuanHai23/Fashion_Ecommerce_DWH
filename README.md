@@ -53,8 +53,6 @@ formulas and full-precision results, and see the
 
 ![Fashion E-Commerce Analytics Warehouse architecture](images/Architecture_Warehouse.png)
 
-[Open the high-resolution PNG](docs/architecture.png)
-
 The data starts from CSV, Excel, or operational extracts across 13 business
 domains. It then follows the governed path below:
 
