@@ -89,15 +89,16 @@ domains, layer inputs and outputs, orchestration, and failure behavior.
 
 Power BI imports nine report-facing SQL views:
 
-1. `mart.vw_sales_overview_daily`
-2. `mart.vw_revenue_reconciliation`
-3. `mart.vw_return_analysis`
-4. `mart.vw_product_performance`
-5. `mart.vw_inventory_health`
-6. `mart.vw_customer_geography`
-7. `mart.vw_traffic_sales_daily`
-8. `mart.vw_web_traffic_by_source`
-9. `mart.vw_ai_return_risk_prediction`
+1. `mart.vw_overview_order_item`
+2. `mart.vw_sales_overview_daily`
+3. `mart.vw_revenue_reconciliation`
+4. `mart.vw_return_analysis`
+5. `mart.vw_product_performance`
+6. `mart.vw_inventory_health`
+7. `mart.vw_customer_geography`
+8. `mart.vw_traffic_sales_daily`
+9. `mart.vw_web_traffic_by_source`
+10. `mart.vw_ai_return_risk_prediction`
 
 The semantic model uses these marts for seven bookmark-driven report views:
 
