@@ -281,3 +281,12 @@ rerun the complete bootstrap.
   binaries are excluded.
 - The PBIX file is configured for Git LFS to avoid bloating Git history.
 - No credentials are included in the repository package.
+
+## Power BI report
+
+The complete interactive Power BI report is available as a GitHub Release:
+
+[Download the Power BI report](https://github.com/LuanHai23/Fashion_Ecommerce_DWH/releases/tag/v1.0.0)
+
+Dashboard screenshots and reusable DAX measures are included directly in this
+repository for convenient review.
