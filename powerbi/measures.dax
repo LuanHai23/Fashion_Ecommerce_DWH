@@ -1,9 +1,4 @@
-// Create these with Modeling > New measure.
-// Do not create them with New column.
-
-// ---------------------------------------------------------------------------
 // Executive sales metrics
-// ---------------------------------------------------------------------------
 
 Total Orders =
 SUM ( 'mart vw_sales_overview_daily'[total_orders] )
@@ -35,9 +30,7 @@ SUM ( 'mart vw_sales_overview_daily'[cancelled_orders] )
 Returned Status Orders =
 SUM ( 'mart vw_sales_overview_daily'[returned_orders] )
 
-// ---------------------------------------------------------------------------
 // Product metrics
-// ---------------------------------------------------------------------------
 
 Total Products =
 DISTINCTCOUNT ( 'mart vw_product_performance'[product_id] )
@@ -70,9 +63,7 @@ DIVIDE (
     SUM ( 'mart vw_product_performance'[total_quantity_sold] )
 )
 
-// ---------------------------------------------------------------------------
 // Return metrics
-// ---------------------------------------------------------------------------
 
 Return Rows =
 SUM ( 'mart vw_return_analysis'[return_rows] )
@@ -96,9 +87,7 @@ DIVIDE (
     [Return Rows]
 )
 
-// ---------------------------------------------------------------------------
 // Inventory and web-traffic metrics
-// ---------------------------------------------------------------------------
 
 Latest Snapshot Date =
 MAX ( 'mart vw_inventory_health'[snapshot_date] )
@@ -141,9 +130,7 @@ DIVIDE (
 Traffic Revenue per Session =
 DIVIDE ( [Traffic Revenue], [Traffic Sessions] )
 
-// ---------------------------------------------------------------------------
 // Return-risk baseline metrics
-// ---------------------------------------------------------------------------
 
 AI Total Rows =
 COUNTROWS ( 'mart vw_ai_return_risk_prediction' )
